@@ -1,4 +1,5 @@
 class Parser
+  # The Reader class is responsible for reading local file contents
   class Reader
     def initialize(logfile)
       @logfile = logfile
