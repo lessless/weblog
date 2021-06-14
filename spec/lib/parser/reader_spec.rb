@@ -1,8 +1,7 @@
-require 'spec_helper'
-require 'parser/reader'
+require "spec_helper"
+require "parser/reader"
 
 describe "Parser::Reader" do
-
   subject { Parser::Reader.new(logfile) }
 
   context "when parsing a file" do

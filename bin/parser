@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/parser'
+require_relative "../lib/parser"
+require_relative "../lib/parser/reader"
+require_relative "../lib/parser/stats_repository"
 
-parser = Parser.new(ARGV)
+reader = Parser::Reader.new(ARGV[0])
+repository = Parser::StatsRepository.new()
+parser =  Parser.new(reader: reader, repository: repository, printer: Class.new)
 parser.run()
