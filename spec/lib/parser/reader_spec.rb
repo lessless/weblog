@@ -16,4 +16,16 @@ describe "Parser::Reader" do
       expect(collector).to eql([["/home", "1.1.1.1"]])
     end
   end
+
+  context "when parsing a file with empty lines at the end" do
+    let(:logfile) { "spec/fixtures/minimal_with_empty_line.log" }
+
+    it "skips them" do
+      collector = []
+
+      subject.stream() { |path, ip| collector << [path, ip] }
+
+      expect(collector).to eql([["/home", "1.1.1.1"]])
+    end
+  end
 end
