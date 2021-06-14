@@ -37,4 +37,3 @@ Run `bundle install` followed by `bundle exec rspec`
 Acceptance tests located in `spec/feature` dir
 
 ## Implementation details
-
