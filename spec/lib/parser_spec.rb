@@ -2,12 +2,12 @@
 
 require 'spec_helper'
 require 'parser'
-require 'parser/reader'
+require 'parser/log_file_reader'
 require 'parser/stats_repository'
 
 describe 'Parser' do
   let(:logfile) { 'spec/fixtures/minimal.log' }
-  let(:reader) { instance_double(Parser::Reader, logfile) }
+  let(:reader) { instance_double(Parser::LogFileReader, logfile) }
   let(:repository) { instance_double(Parser::StatsRepository) }
   let(:printer) { instance_double('Parser::ConsolePrinter') }
 

@@ -2,10 +2,10 @@
 # frozen_string_literal: true
 
 require_relative '../lib/parser'
-require_relative '../lib/parser/reader'
+require_relative '../lib/parser/log_file_reader'
 require_relative '../lib/parser/stats_repository'
 
-reader = Parser::Reader.new(ARGV[0])
+reader = Parser::LogFileReader.new(ARGV[0])
 repository = Parser::StatsRepository.new
 parser = Parser.new(reader: reader, repository: repository, printer: Class.new)
 parser.run

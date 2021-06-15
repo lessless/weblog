@@ -51,6 +51,4 @@ Test coverage is available at `coverage/index.html` (effective after running ful
 ## Implementation details
 
 - I intentionally didn't take any extra steps to optimize how data is stored for performance and left it as open to new scenarios as possible. The reasons are: optimizations are not free - most of the time, they come at the cost of code readability, and second - it's best to optimize for the known scenarios when impact can be measured with load tests.
-- I decided to name log file reader just `Reader` instead of `LogFileReader` just because there are no other input sources yet, and in case there would be other, I believe, it might make sense to group them under `Reader::*`
-- `Parser::Reader` violates SRP as it knows both how to read a file and about a log file format. That's toleratable until there will be a requirement to read from a source other than a local file.
-- There is an implicit contract between `Reader` and `StatsRepository` that a visit is described by the pair of values a `path` and an `ip`. That might be seen both as a Primitive Obsession code smell and violating the second rule of Simple Design. On the other side, something inside me is against wrapping every line in a log file in an object, and so far, it wins.
+- `Parser::LogFileReader` violates SRP as it knows both how to read a file and about a log file format. That's toleratable until there will be a requirement to read from a source other than a local file.

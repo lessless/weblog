@@ -3,8 +3,8 @@
 require 'spec_helper'
 require 'parser/reader'
 
-describe 'Parser::Reader' do
-  subject { Parser::Reader.new(logfile) }
+describe 'Parser::LogFileReader' do
+  subject { Parser::LogFileReader.new(logfile) }
 
   context 'when parsing a file' do
     let(:logfile) { 'spec/fixtures/minimal.log' }
