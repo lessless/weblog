@@ -1,4 +1,6 @@
-$LOAD_PATH << "../lib"
+# frozen_string_literal: true
+
+$LOAD_PATH << '../lib'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

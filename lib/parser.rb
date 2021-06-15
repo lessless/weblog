@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The Parser class is the main entry point and the orchestrating object for log file parsing.
 class Parser
   def initialize(reader:, repository:, printer:)
@@ -11,6 +13,5 @@ class Parser
 
   private
 
-  attr_reader :reader
-  attr_reader :repo
+  attr_reader :reader, :repo
 end

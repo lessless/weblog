@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-require_relative "../lib/parser"
-require_relative "../lib/parser/reader"
-require_relative "../lib/parser/stats_repository"
+require_relative '../lib/parser'
+require_relative '../lib/parser/reader'
+require_relative '../lib/parser/stats_repository'
 
 reader = Parser::Reader.new(ARGV[0])
-repository = Parser::StatsRepository.new()
-parser =  Parser.new(reader: reader, repository: repository, printer: Class.new)
-parser.run()
+repository = Parser::StatsRepository.new
+parser = Parser.new(reader: reader, repository: repository, printer: Class.new)
+parser.run

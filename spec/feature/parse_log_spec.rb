@@ -1,10 +1,12 @@
-require "spec_helper"
+# frozen_string_literal: true
 
-describe "Parsing a log file" do
-  let(:logfile) { "spec/fixtures/webserver.log" }
+require 'spec_helper'
 
-  it "outputs amount of page visits" do
-    expectation = expect { system("./bin/parser #{logfile}") }.to output(<<~TABLE).to_stdout_from_any_process
+describe 'Parsing a log file' do
+  let(:logfile) { 'spec/fixtures/webserver.log' }
+
+  it 'outputs amount of page visits' do
+    expect { system("./bin/parser #{logfile}") }.to output(<<~TABLE).to_stdout_from_any_process
       Page  | Number of visits
       /home | 3 visits
       /index| 2 visits

@@ -1,11 +1,16 @@
+# frozen_string_literal: true
+
 class Parser
+  # The StatsRepository is an in-memory repository for storing visits
   class StatsRepository
-    def initialize()
+    def initialize
       @store = {}
     end
 
     def add_visit(path, ip)
-      store.update({path => [ip]})
+      store.update({ path => [ip] }) do |_ip, recorded_visits, new_visit|
+        recorded_visits + new_visit
+      end
     end
 
     def visits
@@ -16,6 +21,7 @@ class Parser
     end
 
     private
+
     attr_reader :store
   end
 end
