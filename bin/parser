@@ -3,6 +3,7 @@
 
 require_relative '../lib/parser'
 require_relative '../lib/parser/log_file_reader'
+require_relative '../lib/parser/log_entry'
 require_relative '../lib/parser/stats_repository'
 
 reader = Parser::LogFileReader.new(ARGV[0])

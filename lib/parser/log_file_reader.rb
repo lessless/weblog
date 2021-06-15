@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'parser/log_entry'
-
 class Parser
   # The LogFileReader class is responsible for reading local file contents
   class LogFileReader
