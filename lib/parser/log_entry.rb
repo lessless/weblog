@@ -28,9 +28,8 @@ class Parser
     # :reek:ControlParameter
     # :reek:UtilityFunction
     def normalise_ip(ip_str)
-      ip = ip_str || ''
-      if Parser::IPAddress.valid?(ip)
-        ip
+      if Parser::IPAddress.valid?(ip_str)
+        ip_str
       else
         'Invalid IP'
       end
