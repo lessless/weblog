@@ -6,7 +6,7 @@ class Parser
     # :reek:UtilityFunction
     def from(log_entry_str)
       entry_parts = log_entry_str.split
-      {path: normalise_path(entry_parts[0]), ip: normalise_ip(entry_parts[1])}
+      { path: normalise_path(entry_parts[0]), ip: normalise_ip(entry_parts[1]) }
     end
 
     def valid?(log_entry)

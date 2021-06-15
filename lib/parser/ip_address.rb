@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'ipaddr'
 
 class Parser
+  # The IPAddress class represents IP address and associated behavior
   class IPAddress
     def self.valid?(ip_str)
       addr = IPAddr.new(ip_str)
