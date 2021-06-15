@@ -6,8 +6,11 @@ require_relative '../lib/parser/log_file_reader'
 require_relative '../lib/parser/log_entry'
 require_relative '../lib/parser/stats_repository'
 require_relative '../lib/parser/ip_address'
+require_relative '../lib/parser/printer'
+require_relative '../lib/parser/visits'
 
 reader = Parser::LogFileReader.new(ARGV[0])
 repository = Parser::StatsRepository.new
-parser = Parser.new(reader: reader, repository: repository, printer: Class.new)
+printer = Parser::Printer.new
+parser = Parser.new(reader: reader, repository: repository, printer: printer)
 parser.run

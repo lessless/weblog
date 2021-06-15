@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 ruby '~> 3.0'
 
+gem 'terminal-table', '~> 3.0', '>= 3.0.1'
+
 group :test do
   gem 'rspec', '~> 3.10'
   gem 'simplecov', '~> 0.21.2', require: false

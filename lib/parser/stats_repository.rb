@@ -14,7 +14,7 @@ class Parser
     end
 
     def visits
-      store.reduce({}) do |stats, (path, visits)|
+      summary = store.reduce({}) do |stats, (path, visits)|
         stats[path] = visits.length
         stats
       end
