@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Parser
   # The Visits class represent a collection of visits parsed from the log file
   class Visits

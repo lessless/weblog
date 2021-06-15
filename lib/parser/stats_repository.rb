@@ -20,8 +20,7 @@ class Parser
       end
     end
 
-    def views
-    end
+    def views; end
 
     private
 

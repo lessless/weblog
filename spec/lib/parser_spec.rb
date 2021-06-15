@@ -16,8 +16,8 @@ describe 'Parser' do
   subject { Parser.new(reader: reader, repository: repository, printer: printer) }
 
   it 'prints page views table' do
-    visits = Parser::Visits.new({path: '/home', ips: ['1.1.1.1']})
-    views = Parser::Views.new({path: '/home', ips: ['1.1.1.1']})
+    visits = Parser::Visits.new({ path: '/home', ips: ['1.1.1.1'] })
+    views = Parser::Views.new({ path: '/home', ips: ['1.1.1.1'] })
 
     expect(reader).to receive(:stream).and_yield('/index', '1.1.1.1')
     expect(repository).to receive(:add_visit).with('/index', '1.1.1.1')

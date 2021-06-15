@@ -1,8 +1,9 @@
 # frozen_string_literal: true
+
 require 'parser/log_entry'
 
 class Parser
-  # The Reader class is responsible for reading local file contents
+  # The LogFileReader class is responsible for reading local file contents
   class LogFileReader
     def initialize(logfile)
       @logfile = logfile
@@ -19,9 +20,5 @@ class Parser
     private
 
     attr_reader :logfile, :log_entry
-
-    def empty_line?(entry_parts)
-      entry_parts.all?(&:nil?)
-    end
   end
 end
