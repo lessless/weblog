@@ -4,13 +4,13 @@ require 'spec_helper'
 require 'parser/visits'
 
 describe 'Parser::Visits' do
-  subject { Parser::Visits.new }
+  subject { Parser::Visits.new(page_visits) }
 
-  # context '#as_table' do
-  #   it 'formats visits as table' do
-  #     subject.add_visit('/home', '1.1.1.1')
+  context '#as_table' do
+  let(:page_visits) {{ '/home' => 1 }}
+    it 'formats visits as table' do
 
-  #     expect(subject.visits).to eql({ '/home' => 1 })
-  #   end
-  # end
+      expect(subject.as_table).to eql({headers: ["Page", "Number of visits"], rows: [["/home", 1]]})
+    end
+  end
 end
