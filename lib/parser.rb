@@ -11,6 +11,8 @@ class Parser
   def run
     reader.stream { |path, ip| repo.add_visit(path, ip) }
     printer.table(Parser::Visits.new(repo.visits))
+    print "\n"
+    printer.table(Parser::Views.new(repo.views))
   end
 
   private

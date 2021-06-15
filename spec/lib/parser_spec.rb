@@ -15,11 +15,13 @@ describe 'Parser' do
 
   subject { Parser.new(reader: reader, repository: repository, printer: printer) }
 
-  it 'prints page visits table' do
+  it 'prints summary' do
     expect(reader).to receive(:stream).and_yield('/index', '1.1.1.1')
     expect(repository).to receive(:add_visit).with('/index', '1.1.1.1')
     expect(repository).to receive(:visits).and_return({ '/index' => 1 })
+    expect(repository).to receive(:views).and_return({ '/index' => 1 })
     expect(printer).to receive(:table).with(instance_of(Parser::Visits))
+    expect(printer).to receive(:table).with(instance_of(Parser::Views))
 
     subject.run
   end

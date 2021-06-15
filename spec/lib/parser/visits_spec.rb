@@ -10,7 +10,7 @@ describe 'Parser::Visits' do
     let(:page_visits) { { '/aaa' => 1, '/zzz' => 2 } }
 
     it 'sorts table by amount of visits' do
-      expect(subject.as_table).to eql({ headers: ['Page', 'Number of visits'], rows: [["/zzz", 2], ["/aaa", 1]] })
+      expect(subject.as_table).to eql({ headers: ['Page', 'Number of visits'], rows: [['/zzz', 2], ['/aaa', 1]] })
     end
   end
 end
