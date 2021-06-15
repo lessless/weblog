@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'parser/reader'
+require 'parser/log_file_reader'
 
 describe 'Parser::LogFileReader' do
   subject { Parser::LogFileReader.new(logfile) }
