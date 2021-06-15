@@ -5,13 +5,16 @@ class Parser
   def initialize(reader:, repository:, printer:)
     @reader = reader
     @repo = repository
+    @printer = printer
   end
 
   def run
     reader.stream { |path, ip| repo.add_visit(path, ip) }
+    printer.table(repo.visits)
+    printer.table(repo.views)
   end
 
   private
 
-  attr_reader :reader, :repo
+  attr_reader :reader, :repo, :printer, :formatter
 end

@@ -20,6 +20,9 @@ class Parser
       end
     end
 
+    def views
+    end
+
     private
 
     attr_reader :store
