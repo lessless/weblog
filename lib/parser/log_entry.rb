@@ -6,7 +6,7 @@ class Parser
     # :reek:UtilityFunction
     def from(log_entry_str)
       entry_parts = log_entry_str.split
-      { path: entry_parts[0] || '', ip: entry_parts[1] || '' }
+      {path: normalise_path(entry_parts[0]), ip: normalise_ip(entry_parts[1])}
     end
 
     def valid?(log_entry)
@@ -18,6 +18,19 @@ class Parser
     # :reek:UtilityFunction
     def path_present?(log_entry)
       !log_entry[:path].empty?
+    end
+
+    def normalise_path(path_str)
+      path_str || ''
+    end
+
+    def normalise_ip(ip_str)
+      ip = ip_str || ''
+      if Parser::IPAddress.valid?(ip)
+        ip
+      else
+        'Invalid IP'
+      end
     end
   end
 end

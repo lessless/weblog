@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'parser/log_entry'
+require 'parser/ip_address'
 
 describe 'Parser::LogEntry' do
   subject { Parser::LogEntry.new }
@@ -12,7 +13,11 @@ describe 'Parser::LogEntry' do
     end
 
     it 'can handle empty string' do
-      expect(subject.from('')).to eql({ path: '', ip: '' })
+      expect(subject.from('')).to eql({ path: '', ip: 'Invalid IP' })
+    end
+
+    it 'replaces malformed IP with `Invalid IP`' do
+      expect(subject.from('/home 256.255.255.255')).to eql({ path: '/home', ip: 'Invalid IP' })
     end
   end
 
