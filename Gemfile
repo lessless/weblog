@@ -5,6 +5,7 @@ ruby '~> 3.0'
 
 group :test do
   gem 'rspec', '~> 3.10'
+  gem 'simplecov', '~> 0.21.2', require: false
 end
 
 group :development do
