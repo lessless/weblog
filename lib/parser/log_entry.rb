@@ -20,10 +20,13 @@ class Parser
       !log_entry[:path].empty?
     end
 
+    # :reek:ControlParameter
     def normalise_path(path_str)
       path_str || ''
     end
 
+    # :reek:ControlParameter
+    # :reek:UtilityFunction
     def normalise_ip(ip_str)
       ip = ip_str || ''
       if Parser::IPAddress.valid?(ip)
