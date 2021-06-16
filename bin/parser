@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require_relative '../lib/cli'
 require_relative '../lib/parser'
 require_relative '../lib/parser/log_file_reader'
 require_relative '../lib/parser/log_entry'
@@ -10,8 +11,16 @@ require_relative '../lib/parser/printer'
 require_relative '../lib/parser/visits'
 require_relative '../lib/parser/views'
 
-reader = Parser::LogFileReader.new(ARGV[0])
-repository = Parser::StatsRepository.new
-printer = Parser::Printer.new
-parser = Parser.new(reader: reader, repository: repository, printer: printer)
-parser.run
+
+opts = CLI.parse(ARGV)
+
+
+if opts.file == nil
+  CLI.parse(["-h"])
+else
+  reader = Parser::LogFileReader.new(opts.file)
+  repository = Parser::StatsRepository.new
+  printer = Parser::Printer.new
+  parser = Parser.new(reader: reader, repository: repository, printer: printer)
+  parser.run
+end

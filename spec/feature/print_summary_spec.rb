@@ -6,7 +6,7 @@ describe 'Parsing a log file' do
   let(:logfile) { 'spec/fixtures/webserver.log' }
 
   it 'prints summary' do
-    expect { system("./bin/parser #{logfile}") }.to output(<<~TABLE).to_stdout_from_any_process
+    expect { system("./bin/parser -f #{logfile}") }.to output(<<~TABLE).to_stdout_from_any_process
       +--------+------------------+
       | Page   | Number of visits |
       +--------+------------------+
