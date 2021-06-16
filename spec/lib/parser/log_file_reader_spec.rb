@@ -5,29 +5,21 @@ require 'parser/log_file_reader'
 require 'parser/log_entry'
 
 describe 'Parser::LogFileReader' do
-  subject { Parser::LogFileReader.new(logfile) }
+  it 'sends log file entries to a collaborator line by line' do
+    reader = Parser::LogFileReader.new('spec/fixtures/minimal.log')
+    collector = []
 
-  context 'when reading a file' do
-    let(:logfile) { 'spec/fixtures/minimal.log' }
+    reader.stream { |path, ip| collector << { path: path, ip: ip } }
 
-    it 'passes log file entries to the collaborator line by line' do
-      collector = []
+    expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
+  end
 
-      subject.stream { |path, ip| collector << { path: path, ip: ip } }
+  it 'skips empty line at the end of file' do
+    reader = Parser::LogFileReader.new('spec/fixtures/minimal_with_empty_line.log')
+    collector = []
 
-      expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
-    end
+    reader.stream { |path, ip| collector << { path: path, ip: ip } }
 
-
-  context 'when reading a file with empty lines at the end' do
-    let(:logfile) { 'spec/fixtures/minimal_with_empty_line.log' }
-
-    it 'skips empty line at the end of file' do
-      collector = []
-
-      subject.stream { |path, ip| collector << { path: path, ip: ip } }
-
-      expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
-    end
+    expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
   end
 end
