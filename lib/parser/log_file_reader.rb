@@ -5,17 +5,18 @@ class Parser
   class LogFileReader
     def initialize(logfile)
       @logfile = logfile
+      @log_entry = Parser::LogEntry.new
     end
 
     def stream
       File.open(logfile, 'r').each_line do |log_line|
-        log_line = log_line.chop
-        yield(log_line) unless log_line.empty?
+        parsed_entry = log_entry_parser.from(log_line)
+        yield(parsed_entry[:path], parsed_entry[:ip]) if log_entry_parser.valid?(parsed_entry)
       end
     end
 
     private
 
-    attr_reader :logfile
+    attr_reader :logfile, :log_entry_parser
   end
 end

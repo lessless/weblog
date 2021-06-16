@@ -11,12 +11,10 @@ require_relative '../lib/parser/printer'
 require_relative '../lib/parser/visits'
 require_relative '../lib/parser/views'
 
-
 opts = CLI.parse(ARGV)
 
-
-if opts.file == nil
-  CLI.parse(["-h"])
+if opts.file.nil?
+  CLI.parse(['-h'])
 else
   reader = Parser::LogFileReader.new(opts.file)
   repository = Parser::StatsRepository.new

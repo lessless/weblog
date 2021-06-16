@@ -2,7 +2,6 @@
 
 require 'spec_helper'
 require 'parser/log_entry'
-require 'parser/ip_address'
 
 describe 'Parser::LogEntry' do
   subject { Parser::LogEntry.new }
@@ -23,7 +22,7 @@ describe 'Parser::LogEntry' do
     end
 
     it 'returns false if IP is invalid`' do
-      expect(subject.valid?({ path: '/home', ip: '256.1.1.1'})).to be_falsy
+      expect(subject.valid?({ path: '/home', ip: '256.1.1.1' })).to be_falsy
     end
   end
 end

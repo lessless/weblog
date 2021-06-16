@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'parser/log_file_reader'
+require 'parser/log_entry'
 
 describe 'Parser::LogFileReader' do
   subject { Parser::LogFileReader.new(logfile) }
@@ -12,9 +13,9 @@ describe 'Parser::LogFileReader' do
     it 'passes log file entries to the injected object line by line' do
       collector = []
 
-      subject.stream { |log_line| collector << log_line }
+      subject.stream { |path, ip| collector << { path: path, ip: ip } }
 
-      expect(collector).to eql(['/home 1.1.1.1'])
+      expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
     end
   end
 
@@ -24,9 +25,9 @@ describe 'Parser::LogFileReader' do
     it 'skips them' do
       collector = []
 
-      subject.stream { |log_line| collector << log_line }
+      subject.stream { |path, ip| collector << { path: path, ip: ip } }
 
-      expect(collector).to eql(['/home 1.1.1.1'])
+      expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
     end
   end
 end

@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
+$LOAD_PATH << './lib'
+
 # The Parser class is the main entry point and the orchestrating object for log file parsing.
 class Parser
   def initialize(reader:, repository:, printer:)
     @reader = reader
     @repo = repository
     @printer = printer
-    @log_entry = Parser::LogEntry.new
   end
 
   def run
-    reader.stream do |log_line|
-      parsed_entry = @log_entry.from(log_line)
-      repo.add_visit(parsed_entry[:path], parsed_entry[:ip]) if @log_entry.valid?(parsed_entry)
+    reader.stream do |path, ip|
+      repo.add_visit(path, ip)
     end
     printer.table(Parser::Visits.new(repo.visits))
     print "\n"
@@ -21,5 +21,5 @@ class Parser
 
   private
 
-  attr_reader :reader, :repo, :printer, :formatter
+  attr_reader :reader, :repo, :printer
 end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'parser/ip_address'
+
 class Parser
   # The LogEntry class can parsing log file lines into log entries and encapsulates all the associated knowledge.
   class LogEntry
@@ -11,7 +13,7 @@ class Parser
 
     def valid?(log_entry)
       path_present?(log_entry) &&
-      Parser::IPAddress.valid?(log_entry[:ip])
+        Parser::IPAddress.valid?(log_entry[:ip])
     end
 
     private
