@@ -6,7 +6,6 @@ Create a script with the following features:
 
 - print list of visited pages sorted in descending order by the number of page views
 - print list of unique page views sorted in descending order by the number of views
-Acceptance criteria
 
 ## Acceptance Criteria
 
@@ -28,7 +27,7 @@ Page | Number of views
 
 ## Running script
 
-The script is located inside the `bin` folder and expects a path to a log file as a single argument, e.g. `./bin/parser data/webserver.log`.
+The script is located inside the `bin` folder and expects a path to a log file passed through `-f` option, e.g. `./bin/parser -f data/webserver.log`.
 Make sure it's executable before running it - `chmod +x bin/parser`
 
 ## Running tests
@@ -54,3 +53,4 @@ Test coverage is available at `coverage/index.html` (effective after running ful
 - There are few Open/Closed violations because entities from log file entries, e.g., Path and IP Address, are represented as string literals instead of value objects. At the moment, it seems like a reasonable tradeoff.
 - I decided not to wrap every parsed line in a class but instead provide aggregates for Visits and Views. That would be better than passing around a data structure for a few reasons: better communication of intent (second rule of Simple Design) and better encapsulation of domain knowledge (better than having a Formatter massaging hashes).
 -  Initially, I considered log entry valid if it contains at least a path on the premise that it should be displayed in summary if a visit to it was recorded. But exploring an alternative option without `StatsRepository` led me to a better design where it's not needed at all. Also, I got rid of most of the code smells, including SRP violation in `StatsRepository` when it knows the difference between a Visit and a View. The code is here https://github.com/lessless/weblog/pull/1
+-  In this implementation, `Views` and `Visits` are largely the same, and the idea that they are specific cases of a larger abstraction is very diluted. Mostly that's because `StatsRepository` drags the essential difference onto itself, leaving `Visit` and `View` merely presentation concerns.
