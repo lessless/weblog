@@ -27,6 +27,13 @@ class Parser
       end
     end
 
+    def stats
+      store.reduce({}) do |stats, (path, visits)|
+        stats[path] = visits
+        stats
+      end
+    end
+
     private
 
     attr_reader :store
