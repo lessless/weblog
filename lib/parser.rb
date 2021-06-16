@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-$LOAD_PATH << './lib'
-
 # The Parser class is the main entry point and the orchestrating object for log file parsing.
 class Parser
   def initialize(reader:, repository:, printer:)

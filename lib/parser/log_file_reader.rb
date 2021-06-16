@@ -5,7 +5,7 @@ class Parser
   class LogFileReader
     def initialize(logfile)
       @logfile = logfile
-      @log_entry = Parser::LogEntry.new
+      @log_entry_parser = Parser::LogEntry.new
     end
 
     def stream
