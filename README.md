@@ -16,15 +16,15 @@ Page visits:
 
 Page | Number of visits
 --- | ---
-/home | 90 visits
-/index | 80 visits
+/home | 90
+/index | 80
 
 Unique page views:
 
 Page | Number of views
 --- | ---
-/about/2 | 8 unique views
-/index | 5 unique views
+/about/2 | 8
+/index | 5
 
 ## Running script
 

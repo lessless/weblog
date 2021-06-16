@@ -8,7 +8,7 @@ class Parser
     end
 
     def as_table
-      { headers: ['Page', 'Number of visits'], rows: page_visits.to_a }
+      { headers: ['Page', 'Number of visits'], rows: page_visits.to_a.sort_by { |page_visits| -page_visits[1] } }
     end
 
     private

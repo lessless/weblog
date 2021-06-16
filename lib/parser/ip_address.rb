@@ -8,7 +8,7 @@ class Parser
     def self.valid?(ip_str)
       addr = IPAddr.new(ip_str)
       addr.ipv4? || addr.ipv6?
-    rescue IPAddr::InvalidAddressError
+    rescue IPAddr::InvalidAddressError, IPAddr::AddressFamilyError
       false
     end
   end

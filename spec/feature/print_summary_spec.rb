@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Parsing a log file' do
   let(:logfile) { 'spec/fixtures/webserver.log' }
 
-  it 'outputs amount of page visits' do
+  it 'prints summary' do
     expect { system("./bin/parser #{logfile}") }.to output(<<~TABLE).to_stdout_from_any_process
       +--------+------------------+
       | Page   | Number of visits |
@@ -13,6 +13,13 @@ describe 'Parsing a log file' do
       | /home  | 3                |
       | /index | 2                |
       +--------+------------------+
+
+      +--------+-----------------+
+      | Page   | Number of views |
+      +--------+-----------------+
+      | /home  | 2               |
+      | /index | 2               |
+      +--------+-----------------+
     TABLE
   end
 end

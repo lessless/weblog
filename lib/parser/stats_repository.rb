@@ -20,7 +20,19 @@ class Parser
       end
     end
 
-    def views; end
+    def views
+      store.reduce({}) do |stats, (path, visits)|
+        stats[path] = visits.uniq.length
+        stats
+      end
+    end
+
+    def stats
+      store.reduce({}) do |stats, (path, visits)|
+        stats[path] = visits
+        stats
+      end
+    end
 
     private
 

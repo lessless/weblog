@@ -12,9 +12,9 @@ describe 'Parser::LogFileReader' do
     it 'passes log file entries to the injected object line by line' do
       collector = []
 
-      subject.stream { |path, ip| collector << [path, ip] }
+      subject.stream { |log_line| collector << log_line }
 
-      expect(collector).to eql([['/home', '1.1.1.1']])
+      expect(collector).to eql(['/home 1.1.1.1'])
     end
   end
 
@@ -24,9 +24,9 @@ describe 'Parser::LogFileReader' do
     it 'skips them' do
       collector = []
 
-      subject.stream { |path, ip| collector << [path, ip] }
+      subject.stream { |log_line| collector << log_line }
 
-      expect(collector).to eql([['/home', '1.1.1.1']])
+      expect(collector).to eql(['/home 1.1.1.1'])
     end
   end
 end
