@@ -22,4 +22,12 @@ describe 'Parser::LogFileReader' do
 
     expect(collector).to eql([{ path: '/home', ip: '1.1.1.1' }])
   end
+
+  it "exits if can't open file" do
+    reader = Parser::LogFileReader.new('a/non/existing/file')
+
+    expect(reader).to receive(:exit!)
+
+    reader.stream
+  end
 end

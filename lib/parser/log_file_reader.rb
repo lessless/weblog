@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'logger'
+
 class Parser
   # The LogFileReader class is responsible for reading local file contents
   class LogFileReader
@@ -13,6 +15,10 @@ class Parser
         parsed_entry = log_entry_parser.from(log_line)
         yield(parsed_entry[:path], parsed_entry[:ip]) if log_entry_parser.valid?(parsed_entry)
       end
+    rescue Errno::ENOENT => e
+      logger = Logger.new(STDERR)
+      logger.error "CAN'T OPEN FILE: #{e}"
+      exit! 1
     end
 
     private
