@@ -15,4 +15,5 @@ group :development do
   gem 'rake', '~> 13.0'
   gem 'reek', '~> 6.0'
   gem 'rubocop', '~> 1.16'
+  gem 'rubocop-rspec', '~> 1.27'
 end
