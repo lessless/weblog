@@ -4,7 +4,7 @@
 
 Create a script with the following features:
 
-- print list of visited pages sorted in descending order by the number of page views
+- print list of visited pages sorted in descending order by the number of page visits
 - print list of unique page views sorted in descending order by the number of views
 
 ## Acceptance Criteria
