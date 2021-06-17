@@ -16,7 +16,7 @@ class Parser
         yield(parsed_entry[:path], parsed_entry[:ip]) if log_entry_parser.valid?(parsed_entry)
       end
     rescue Errno::ENOENT => e
-      logger = Logger.new(STDERR)
+      logger = Logger.new($stderr)
       logger.error "CAN'T OPEN FILE: #{e}"
       exit! 1
     end
