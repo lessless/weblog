@@ -3,3 +3,5 @@ AllCops:
 
 Style/EachWithObject:
   Enabled: false
+Naming/RescuedExceptionsVariableName:
+  Enabled: false
