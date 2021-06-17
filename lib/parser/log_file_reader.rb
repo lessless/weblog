@@ -15,14 +15,18 @@ class Parser
         parsed_entry = log_entry_parser.from(log_line)
         yield(parsed_entry[:path], parsed_entry[:ip]) if log_entry_parser.valid?(parsed_entry)
       end
-    rescue Errno::ENOENT => e
-      logger = Logger.new($stderr)
-      logger.error "CAN'T OPEN FILE: #{e}"
-      exit! 1
+    rescue Errno::ENOENT => _e
+      report_file_open_error
     end
 
     private
 
     attr_reader :logfile, :log_entry_parser
+
+    def report_file_open_error
+      logger = Logger.new($stderr)
+      logger.error "CAN'T OPEN FILE: #{e}"
+      exit! 1
+    end
   end
 end

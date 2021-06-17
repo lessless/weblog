@@ -24,6 +24,9 @@ describe 'Parser::LogFileReader' do
   end
 
   it "exits if can't open file" do
+    logger = double('logger')
+    allow(Logger).to receive(:new).and_return(logger)
+    allow(logger).to receive(:error)
     reader = Parser::LogFileReader.new('a/non/existing/file')
 
     expect(reader).to receive(:exit!)
